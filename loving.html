@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>半周年快乐 💕</title>
+  <style>
+    :root{
+      --bg: #ff69b4;
+      --card: #ffffff;
+      --accent: #ffc9cb;
+      --muted: #c9a9a6;
+      font-family: "Microsoft YaHei", "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    html, body { height:100%; margin:0; background: linear-gradient(180deg, var(--bg), #fff); }
+    body { display:flex; align-items:center; justify-content:center; padding:30px; overflow:hidden; }
+
+    .wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      z-index: 1; /* keep box above background hearts */
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: nowrap;
+    }
+
+    .photo {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+      position: relative;
+      top: -300px; /* start above screen */
+      opacity: 0;
+      animation: dropDown 2s ease forwards;
+    }
+
+    /* left image drops first, right image second */
+    .photo:first-child { animation-delay: 0.5s; }
+    .photo:last-child { animation-delay: 1.5s; }
+
+    @keyframes dropDown {
+      0% { top: -300px; opacity: 0; }
+      100% { top: 0; opacity: 1; }
+    }
+
+    .box {
+      background: var(--card);
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      max-width: 520px;
+      text-align: left;
+    }
+
+    .box h1 {
+      margin: 0 0 10px 0;
+      font-size: 28px;
+      color: var(--accent);
+    }
+    .box p { color: #333; line-height:1.55; margin: 8px 0; }
+
+    /* floating hearts animation */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 24px;
+      color: red;
+      animation: floatUp 6s linear forwards;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.9; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.8); opacity: 0; }
+    }
+
+    @media (max-width: 880px) {
+      .container { flex-direction: column; gap: 18px; padding: 10px; }
+      .photo { width: 60%; height: auto; max-width: 360px; }
+      .box { width: 100%; max-width: 760px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="container">
+      <img src="hehe.jpeg" alt="左边照片" class="photo">
+
+      <div class="box">
+        <h1>半周年快乐 ❤️</h1>
+        <p><strong>亲爱的萬旭媛寶寶</strong>，半周年快乐！感谢你陪我走过这六个月的每一个瞬间。雖然又吵又閙，但這是感情中的必經之路。無論怎麽樣都好，以後的我們不管遇到什麽事，都要冷靜下來，好嗎？永遠愛你寶寶。</p>
+
+        <div id="note" style="margin-top:10px; padding:12px; background:#fff6fb; border-radius:10px;">
+          <p style="margin:0">我們心中的五千萬， 千萬要健康， 千萬愛對方， 千萬要平安， 千萬要幸福，千萬要開心。</p>
+          <p style="margin:0"><strong>自古以來有位小鋒子説過， 一萬金幣也抵不過一萬徐媛</strong></p>
+        </div>
+        <p style="margin:0">你的大寶貝: </p>
+        <p>丘凱鋒</p>
+      </div>
+
+      <img src="wxy.jpeg" alt="右边照片" class="photo">
+    </div>
+  </div>
+
+  <script>
+    // create floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw"; // random horizontal position
+      heart.style.fontSize = Math.random() * 20 + 16 + "px"; // random size
+      heart.style.animationDuration = (Math.random() * 3 + 4) + "s"; // random speed
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    // faster heart spawning = more hearts
+    setInterval(createHeart, 250);
+  </script>
+
+</body>
+</html>
